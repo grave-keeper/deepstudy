@@ -1,0 +1,51 @@
+a{
+    all: unset;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+.brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+}
+
+.navbar-left,
+.navbar-right {
+    width: 40%;
+    display: flex;
+    list-style: none;
+    gap: 12%;
+    align-items: center;
+}
+
+.navbar-left{
+    font-size: 0.9rem;
+}
+
+.navbar-right{
+    justify-content: right;
+    gap: 5%;
+    font-size: 0.7rem;
+}
+
+.theme,
+.sign-in{
+    border: 1px solid #434343;
+    padding: 10px 18px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+.create-account{
+    border: 1px solid #434343;
+    padding: 10px 18px;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+}
