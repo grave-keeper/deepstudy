@@ -1,0 +1,146 @@
+#hero-section {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 4% 5%;
+    display: grid;
+    grid-template-columns: repeat(2 ,1fr);
+}
+
+.hero-left {
+    width: 79%;
+    height: 337px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hero-message h1{
+    font-weight: 500;
+}
+
+.hero-message p {
+    font-size: 0.9rem;
+    padding-top: 8%;
+}
+
+.cta {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.cta p {
+    font-size: 0.8rem;
+    width: 310px;
+}
+
+.hero-input {
+    height: 35px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hero-svg-message {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+}
+
+.hero-email {
+    box-sizing: border-box;
+    padding: 6px 0;
+    padding-left: 50px;
+    width: 340px;
+    border: none;
+    border-radius: 5px;
+}
+
+.hero-email::placeholder{
+    color: black;
+    font-weight: 500;
+}
+
+.hero-email:focus {
+    outline: none;
+}
+
+.hero-input a {
+    background-color: #46C046;
+    color: white;
+    font-size: 0.8rem;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+
+.hero-image {
+    border-radius: 5px;
+    max-width: 626px;
+    /* height: 337px; */
+}
+
+#story-section{
+    box-sizing: border-box;
+    padding: 4% 5%;
+}
+
+#story-section .story-image{
+    max-width: 1229.4px;
+}
+
+.workflow-section{
+    box-sizing: border-box;
+    padding: 0 5%;
+}
+
+.workflow-section h2{
+    text-align: center;
+}
+
+.workflow-process{
+    max-width: 1229.4px;
+    padding: 4% 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+
+.workflow-step{
+    background-color: black;
+    width: 338px;
+    height: 181px;
+    border-radius: 5px;
+    border: 1px solid #434343;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    align-items: center;
+    padding: 2% 18%;
+    text-align: center;
+}
+
+.workflow-process span{
+    color: #4BB4FF;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.workflow-process img{
+    color: #4BB4FF;
+    width: 60px;
+}
+
+.workflow-step p{
+    font-size: 0.9rem;
+}
+
+.benefits-step{
+    width: 267px;
+    height: 298px;
+    gap: 10%;
+    padding: 2% 9%;
+}
