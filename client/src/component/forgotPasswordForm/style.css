@@ -1,0 +1,20 @@
+#reset-link{
+    background-color: #212121;
+    width: 350px;
+    height: 380px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 25px;
+    gap: 20px;
+}
+
+#reset-link span{
+    font-size: 0.75rem;
+}
+
+.verify-human{
+    height: 216px;
+    background-color: white;
+    border-radius: 5px;
+}
