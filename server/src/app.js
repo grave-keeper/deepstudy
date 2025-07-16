@@ -7,9 +7,9 @@ import { FRONTEND_URL } from './config/constants.js'
 export const app = express()
 
 const corsOptions = {
-  origin: FRONTEND_URL,
-  methods: ['GET', 'POST', 'PATCH'],
-  credentials: true,
+    origin: FRONTEND_URL,
+    methods: ['GET', 'POST', 'PATCH'],
+    credentials: true,
 }
 
 // Middlewares
@@ -20,3 +20,5 @@ app.use(cookieParser())
 // Routes
 import userRouter from './routes/user.route.js'
 app.use('/users', userRouter)
+import authRouter from './routes/auth.route.js'
+app.use('/auth', authRouter)
