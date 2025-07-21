@@ -1,4 +1,4 @@
-function createRawEmail(to, from, subject, message) {
+function createEmail(to, from, subject, message) {
     const emailLines = [
         `From: ${from}`,
         `To: ${to}`,
@@ -20,4 +20,4 @@ function createRawEmail(to, from, subject, message) {
     return base64EncodedEmail
 }
 
-export default createRawEmail
+export default createEmail

@@ -17,7 +17,7 @@ router.post('/resend-verification-code', resendVerificationCode)
 router.post('/verify-code', verifyCode)
 router.post('/signup', registerUser)
 router.post('/login', loginUser)
-router.get('/get-details', getUserData)
+router.get('/profile', getUserData)
 router.post('/logout', logOutUser)
 router.patch('/update-account', updateAccountDetails)
 

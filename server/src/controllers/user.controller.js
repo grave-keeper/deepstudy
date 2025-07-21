@@ -1,12 +1,12 @@
-import sendEmail from '../services/sendEmail.js'
-import verificationCode from '../helper/verificationCode.js'
+// import sendEmail from '../services/googleEmail.service.js'
+import generateVerificationCode from '../helper/generateVerificationCode.js'
 
 const registerEmail = async (req, res) => {
-    await sendEmail({
-        email: req.body.email,
-        verificationCode: verificationCode(),
-    })
-    res.status(200)
+    // await sendEmail({
+    //     email: req.body.email,
+    //     verificationCode: generateVerificationCode(),
+    // })
+    // res.status(200)
 }
 
 const resendVerificationCode = async (req, res) => {}
