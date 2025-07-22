@@ -1,6 +1,6 @@
-import { checkIfUserExistsByGoogleId } from '../helper/db.helper.js'
+import { getUserByGoogleId } from '../helper/db.helper.js'
 import googleAuthService from '../services/googleAuth.service.js'
-import { createJwtTokens } from '../helper/jwt.helper.js'
+import { createJwtTokens } from '../services/jwt.service.js'
 import { FRONTEND_URL } from '../config/constants.js'
 import { User } from '../models/user.model.js'
 import {
@@ -18,69 +18,86 @@ const handleGoogleCallback = async (req, res) => {
 
     const authService = new googleAuthService()
     const { tokens, payload } = await authService.handleGoogleAuth(code)
-    const userExists = await checkIfUserExistsByGoogleId(payload.sub)
+    let user = await getUserByGoogleId(payload.sub)
     let jwtTokens = new Object()
 
-    if (!userExists) {
+    if (!user) {
         const user = new User({
-            googleId: payload.sub,
             email: payload.email,
             name: payload.name,
             picture: payload.picture,
             emailVerified: payload.email_verified,
-            tokens: {
-                google: {
-                    accessToken: tokens.access_token,
+            auth: [
+                {
+                    provider: 'google',
+                    providerId: payload.sub,
                     refreshToken: tokens.refresh_token,
-                    expiresAt: tokens.expiry_date,
+                    expiresIn: tokens.expiry_date,
                 },
-            },
+            ],
         })
 
-        // generating jwt tokens
         jwtTokens = createJwtTokens({
             _id: user._id,
-            name: user.name,
             email: user.email,
+            name: user.name,
         })
 
-        user.tokens.jwt = {
-            accessToken: jwtTokens.jwtAccessToken,
-            refreshToken: jwtTokens.jwtRefreshToken,
-            expiresAt: jwtTokens.jwtRefreshTokenExpiry,
-        }
+        console.log('jwtTokens is : ', jwtTokens)
+
+        user.sessions = [
+            {
+                refreshToken: jwtTokens.refreshToken,
+                userAgent: req.get('User-Agent'),
+            },
+        ]
 
         await user.save()
 
         console.log('user created : ', user)
     } else {
-        const user = await User.findOne({ googleId: payload.sub })
-        user.tokens.google = {
-            accessToken: tokens.access_token,
-            refreshToken: tokens.refresh_token,
-            expiresAt: tokens.expiry_date,
-        }
         jwtTokens = createJwtTokens({
             _id: user._id,
-            name: user.name,
             email: user.email,
+            name: user.name,
         })
-        user.tokens.jwt = {
-            accessToken: jwtTokens.jwtAccessToken,
-            refreshToken: jwtTokens.jwtRefreshToken,
-            expiresAt: jwtTokens.jwtRefreshTokenExpiry,
-        }
-        await user.save()
-        console.log('user updated : ', user)
+        user = await User.findOneAndUpdate(
+            {
+                auth: {
+                    $elemMatch: {
+                        provider: 'google',
+                        providerId: payload.sub,
+                    },
+                },
+            },
+            {
+                $set: {
+                    name: payload.name,
+                    picture: payload.picture,
+                    emailVerified: payload.email_verified,
+                    'auth.$.refreshToken': tokens.refresh_token,
+                    'auth.$.expiresIn': tokens.expiry_date,
+                },
+                $push: {
+                    sessions: {
+                        refreshToken: jwtTokens.refreshToken,
+                        userAgent: req.get('User-Agent'),
+                    },
+                },
+            },
+            { new: true }
+        )
+
+        console.log('update user is : ', user)
     }
 
     res.status(200)
+        .cookie('accessToken', jwtTokens.accessToken, refreshTokenCookieOptions)
         .cookie(
             'refreshToken',
             jwtTokens.refreshToken,
             accessTokenCookieOptions
         )
-        .cookie('accessToken', jwtTokens.accessToken, refreshTokenCookieOptions)
         .redirect(`http://localhost:3000/src/pages/home`)
 }
 

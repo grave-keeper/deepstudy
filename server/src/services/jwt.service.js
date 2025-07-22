@@ -16,7 +16,7 @@ const createJwtTokens = ({ _id, email, name }) => {
         _id: _id,
     }
 
-    const jwtAccessToken = jwt.sign(
+    const accessToken = jwt.sign(
         accessTokenPayload,
         JWT_ACCESS_TOKEN_SECRET,
         {
@@ -24,7 +24,7 @@ const createJwtTokens = ({ _id, email, name }) => {
         }
     )
 
-    const jwtRefreshToken = jwt.sign(
+    const refreshToken = jwt.sign(
         refreshTokenPayload,
         JWT_REFRESH_TOKEN_SECRET,
         {
@@ -33,9 +33,8 @@ const createJwtTokens = ({ _id, email, name }) => {
     )
 
     return {
-        jwtAccessToken,
-        jwtRefreshToken,
-        jwtRefreshTokenExpiry: Date.now() + Number(JWT_REFRESH_TOKEN_EXPIRY), // current time in sec + 7 days in sec
+        accessToken,
+        refreshToken,
     }
 }
 

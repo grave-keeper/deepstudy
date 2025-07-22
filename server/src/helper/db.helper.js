@@ -1,13 +1,13 @@
 import { User } from '../models/user.model.js'
 
-const checkIfUserExistsByEmail = async (email) => {
+const getUserByGmail = async (email) => {
     const user = await User.findOne({ email })
-    return !!user
+    return user
 }
 
-const checkIfUserExistsByGoogleId = async (googleId) => {
-    const user = await User.findOne({ googleId })
-    return !!user
+const getUserByGoogleId = async (googleId) => {
+    const user = await User.findOne({ "auth.providerId" : googleId })
+    return user
 }
 
-export { checkIfUserExistsByEmail, checkIfUserExistsByGoogleId }
+export { getUserByGmail, getUserByGoogleId }

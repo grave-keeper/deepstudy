@@ -5,12 +5,6 @@ import { SALT_ROUNT } from '../config/constants.js'
 
 const userSchema = new Schema(
     {
-        googleId: {
-            type: String,
-            required: true,
-            unique: true,
-            index: true,
-        },
         email: {
             type: String,
             required: [true, 'Email address is required'],
@@ -36,23 +30,31 @@ const userSchema = new Schema(
             type: String,
             default: false,
         },
-        tokens: {
-            jwt: {
-                accessToken: { type: String, default: null },
-                refreshToken: { type: String, default: null },
-                expiresAt: { type: String, default: null },
+        auth: [
+            {
+                provider: {
+                    type: String,
+                    enum: ['google', 'github'],
+                    required: true,
+                },
+                providerId: {
+                    type: String,
+                    required: true,
+                    unique: true,
+                    index: true,
+                },
+                refreshToken: { type: String, required: true, unique: true },
+                expiresIn: { type: Number, required: true },
+                _id: false,
             },
-            google: {
-                accessToken: { type: String, default: null },
-                refreshToken: { type: String, default: null },
-                expiresAt: { type: String, default: null },
+        ],
+        sessions: [
+            {
+                refreshToken: { type: String, required: true, unique: true },
+                userAgent: { type: String, required: true },
+                _id: false,
             },
-            github: {
-                accessToken: { type: String, default: null },
-                refreshToken: { type: String, default: null },
-                expiresAt: { type: String, default: null },
-            },
-        },
+        ],
     },
     { timestamps: true }
 )
