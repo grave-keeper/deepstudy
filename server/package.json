@@ -19,13 +19,16 @@
   },
   "homepage": "https://github.com/Deepest-DARK/deepstudy#readme",
   "dependencies": {
+    "@octokit/rest": "^22.0.0",
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.1.0",
     "express": "^5.1.0",
     "googleapis": "^152.0.0",
+    "i": "^0.3.7",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.16.2"
+    "mongoose": "^8.16.2",
+    "npm": "^11.4.2"
   }
 }

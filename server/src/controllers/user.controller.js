@@ -1,4 +1,5 @@
 // import sendEmail from '../services/googleEmail.service.js'
+import { safeRoutePromise } from '../utils/asyncHandler.js'
 import generateVerificationCode from '../helper/generateVerificationCode.js'
 
 const registerEmail = async (req, res) => {

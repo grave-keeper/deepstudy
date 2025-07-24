@@ -30,31 +30,38 @@ const userSchema = new Schema(
             type: String,
             default: false,
         },
-        auth: [
-            {
-                provider: {
-                    type: String,
-                    enum: ['google', 'github'],
-                    required: true,
-                },
-                providerId: {
-                    type: String,
-                    required: true,
-                    unique: true,
-                    index: true,
-                },
-                refreshToken: { type: String, required: true, unique: true },
-                expiresIn: { type: Number, required: true },
-                _id: false,
+        auth: {
+            provider: {
+                type: String,
+                enum: ['google', 'github'],
+                required: true,
             },
-        ],
-        sessions: [
-            {
-                refreshToken: { type: String, required: true, unique: true },
-                userAgent: { type: String, required: true },
-                _id: false,
+            providerId: {
+                type: String,
+                required: true,
+                unique: true,
+                index: true,
             },
-        ],
+            accessToken: {
+                type: String,
+                required: true, // Required for both Google and GitHub
+                unique: true,
+            },
+            refreshToken: {
+                type: String,
+                required: function () {
+                    return this.provider === 'google' // Required only for Google
+                },
+                unique: function () {
+                    return this.provider === 'google' // Unique only for Google
+                },
+            },
+            expiresIn: { type: Number },
+        },
+
+        sessions: {
+            refreshToken: { type: String, required: true, unique: true },
+        },
     },
     { timestamps: true }
 )

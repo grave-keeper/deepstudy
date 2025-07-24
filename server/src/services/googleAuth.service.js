@@ -6,6 +6,8 @@ import {
     GOOGLE_AUTH_SCOPES,
 } from '../config/constants.js'
 
+import { safeAsyncTry } from '../utils/asyncHandler.js'
+
 export default class {
     #oAuth2Client
 
@@ -17,16 +19,16 @@ export default class {
         )
     }
 
-    createGoogleAuthUrl() {
+    createGoogleAuthUrl = safeAsyncTry(() => {
         return this.#oAuth2Client.generateAuthUrl({
             access_type: 'offline', // For refresh token
             scope: GOOGLE_AUTH_SCOPES, // Requested scopes
             prompt: 'consent', // Forces consent screen
             include_granted_scopes: true, // Ensures previously granted scopes are included
         })
-    }
+    })
 
-    async handleGoogleAuth(code) {
+    handleGoogleAuth = safeAsyncTry(async (code) => {
         const { tokens } = await this.#oAuth2Client.getToken(code)
         const payload = await this.#oAuth2Client
             .verifyIdToken({
@@ -37,8 +39,12 @@ export default class {
                 return response.getPayload()
             })
             .catch((error) => {
-                return new Error("oAth2Client verifyIdToken Error!")
+                return new Error('oAth2Client verifyIdToken Error!')
             })
         return { tokens, payload }
-    }
+    })
+
+    revokeGoogleRefreshToken = safeAsyncTry((refreshToken) => {
+        this.#oAuth2Client.revokeToken(refreshToken)
+    })
 }
