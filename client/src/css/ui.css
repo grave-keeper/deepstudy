@@ -86,10 +86,6 @@ button{
     font-weight: bold;
 }
 
-button:hover{
-    cursor: pointer;
-}
-
 footer {
     width: 350px;
     font-size: 0.8rem;
@@ -99,4 +95,8 @@ footer {
 footer a {
     color: #663399;
     text-decoration: none;
+}
+
+.auth > *:hover,button:hover{
+    cursor: pointer;
 }
