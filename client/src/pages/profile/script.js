@@ -1,9 +1,8 @@
-import { getUserData } from '../../services/userService.js'
+import { fetchNavBar, getFooter } from '../../helper/component.js'
+import { getUserData } from '../../services/userService.js';
 
-fetch('../../components/navbar')
-    .then((navbar) => navbar.text())
-    .then((navbar) => (document.getElementById('navbar').innerHTML = navbar))
-    .catch((error) => console.error('Error while fetching navbar \n', error))
+fetchNavBar()
+
 ;(async () => {
     await fetch('../../components/userProfile')
         .then((userProfile) => userProfile.text())
@@ -16,7 +15,4 @@ fetch('../../components/navbar')
     document.body.appendChild(script)
 })()
 
-fetch('../../components/footer')
-    .then((footer) => footer.text())
-    .then((footer) => (document.getElementById('footer').innerHTML = footer))
-    .catch((error) => console.error('Error while fetching footer \n', error))
+getFooter()

@@ -1,9 +1,8 @@
-console.log('inside profile..')
-
 if (localStorage.getItem('user')) {
     const user = JSON.parse(localStorage.getItem('user'))
     document.querySelector('.profile-info .name').innerText = user.name
     document.querySelector('.profile-info .email').innerText = user.email
+    document.querySelector('#profile-container > div > img:first-child').src = user.picture
     const date = new Date(user.createdAt)
     const formatted = date.toLocaleDateString('en-US', {
         year: 'numeric',

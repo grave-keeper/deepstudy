@@ -1,11 +1,12 @@
 export const asyncHandler = (fn) => async(...args) => {
     try {
-        return fn(...args)
+        return await fn(...args)
     } catch (error) {
-        console.log(error)
-        return null
+        console.error(error)
+        return [false,error]
     }
 }
+
 // const asyncHandler = (fn) => (...args) => {
 //   return Promise.resolve(fn(...args))
 //     .then(result => result)

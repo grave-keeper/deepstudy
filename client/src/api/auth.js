@@ -1,6 +1,7 @@
-const SERVER_IP = 'http://localhost:4000'
+import { asyncHandler } from '../utils/asyncHandler.js'
+import { SERVER_IP } from '../config/constants.js'
 
-const googleSignUp = () => {
+const googleSignUp = asyncHandler(() => {
     // 1. approach
     // const response = await fetch(`${SERVER_IP}/api/auth/google`)
     // if (!response.ok) throw new Error('Google signup failed')
@@ -9,11 +10,11 @@ const googleSignUp = () => {
     // 2. approach
     window.location.href = `${SERVER_IP}/api/auth/google`
     return
-}
+})
 
-const githubSignUp = () => {
+const githubSignUp = asyncHandler(() => {
     window.location.href = `${SERVER_IP}/api/auth/github`
-}
+})
 
 export { googleSignUp, githubSignUp }
 
