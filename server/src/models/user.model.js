@@ -76,4 +76,4 @@ userSchema.methods.isPasswordCorrect = async function (password) {
     return await bcrypt.compare(password, this.password)
 }
 
-export const User = new model('users', userSchema)
+export const User = new model('user', userSchema)

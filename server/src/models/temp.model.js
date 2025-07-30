@@ -27,4 +27,4 @@ const tempSchema = new Schema({
     },
 })
 
-export const TempEmail = model('tempemails', tempSchema)
+export const TempEmail = model('temp_Email', tempSchema)
