@@ -8,6 +8,7 @@ const accessTokenCookieOptions = {
     httpOnly: true,
     sameSite: 'strict',
     secure: NODE_ENV === 'production' ? true : false,
+    path: '/',
     maxAge: JWT_ACCESS_TOKEN_EXPIRY,
 }
 
@@ -15,7 +16,8 @@ const refreshTokenCookieOptions = {
     httpOnly: true,
     sameSite: 'strict',
     secure: NODE_ENV === 'production' ? true : false,
+    path: '/',
     maxAge: JWT_REFRESH_TOKEN_EXPIRY,
 }
 
-export { refreshTokenCookieOptions, accessTokenCookieOptions }
+export { accessTokenCookieOptions, refreshTokenCookieOptions }

@@ -1,24 +1,21 @@
 import { Router } from 'express'
 import {
-  registerEmail,
-  resendVerificationCode,
-  verifyCode,
-  registerUser,
-  loginUser,
-  getUserData,
-  logOutUser,
-  updateAccountDetails,
+    registerEmail,
+    registerUser,
+    loginUser,
+    getUserData,
+    submitFeedback,
+    logOutUser,
 } from '../controllers/user.controller.js'
+import { authMiddleware } from '../middleware/jwt.middleware.js'
 
 const router = Router()
 
-router.post('/register-email', registerEmail)
-router.post('/resend-verification-code', resendVerificationCode)
-router.post('/verify-code', verifyCode)
+router.get('/register-email', registerEmail)
 router.post('/signup', registerUser)
-router.post('/login', loginUser)
-router.get('/profile', getUserData)
-router.post('/logout', logOutUser)
-router.patch('/update-account', updateAccountDetails)
+router.post('/signin', loginUser)
+router.get('/profile', authMiddleware, getUserData)
+router.post('/feedback', submitFeedback)
+router.get('/logout', authMiddleware, logOutUser)
 
 export default router

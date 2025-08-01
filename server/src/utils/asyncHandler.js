@@ -1,8 +1,8 @@
 const safeAsyncTry =
     (fn) =>
-    (...args) => {
+    async (...args) => {
         try {
-            return fn(...args)
+            return await fn(...args)
         } catch (error) {
             console.log(error)
             return null

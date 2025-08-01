@@ -15,8 +15,8 @@ const corsOptions = {
 // Middlewares
 app.use(cors(corsOptions))
 app.use(express.json({ limit: '10kb' }))
+app.use(express.urlencoded({ extended: true })) // use qs
 app.use(cookieParser())
-
 
 import userRouter from './routes/user.route.js'
 app.use('/users', userRouter)
@@ -26,3 +26,11 @@ app.use('/api/auth', apiRouter)
 // Redirct url : google,github
 import authRouter from './routes/auth.route.js'
 app.use('/auth', authRouter)
+
+// Error-handling middleware
+app.use((error, req, res, next) => {
+    console.log('erros middleware : \n', error)
+    res.status(500).json({
+        error: 'Internal Server Error',
+    })
+})

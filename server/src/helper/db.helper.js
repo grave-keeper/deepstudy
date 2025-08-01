@@ -1,13 +1,41 @@
 import { User } from '../models/user.model.js'
+import { TempUser } from '../models/temp.model.js'
 
 const getUserByGmail = async (email) => {
-    const user = await User.findOne({ email })
+    let user = null
+    if (email && email != 'null') {
+        user = await User.findOne({ email })
+    }
     return user
 }
 
 const getUserByGoogleId = async (googleId) => {
-    const user = await User.findOne({ "auth.providerId" : googleId })
+    let user
+    if (googleId) {
+        user = await User.findOne({ 'auth.providerId': googleId })
+    }
     return user
 }
 
-export { getUserByGmail, getUserByGoogleId }
+const getTempUserByGmail = async (email) => {
+    let user
+    if (email) {
+        user = await TempUser.findOne({ email })
+    }
+    return user
+}
+
+const getTempUserById = async (id) => {
+    let user = null
+    if (id && id != 'null') {
+        user = await TempUser.findById(id)
+    }
+    return user
+}
+
+export {
+    getUserByGmail,
+    getUserByGoogleId,
+    getTempUserByGmail,
+    getTempUserById,
+}

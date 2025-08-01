@@ -13,18 +13,18 @@ const tempSchema = new Schema({
         index: true,
         trim: true,
     },
-    verificationCode: {
-        type: String,
-        validate: {
-            validator: validateCode,
-            message: 'verification code must be 6 digits',
-        },
-    },
+    // verificationCode: {
+    //     type: String,
+    //     validate: {
+    //         validator: validateCode,
+    //         message: 'verification code must be 6 digits',
+    //     },
+    // },
     createdAt: {
         type: Date,
         default: Date.now,
-        expires: 600, // Deletes documents after 10 minutes (600 seconds)
+        expires: 300, // Deletes documents after 10 minutes (600 seconds)
     },
 })
 
-export const TempEmail = model('temp_Email', tempSchema)
+export const TempUser = model('temp_user', tempSchema)

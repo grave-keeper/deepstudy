@@ -1,7 +1,41 @@
 import { Schema, model } from 'mongoose'
 import bcrypt from 'bcrypt'
 
-import { SALT_ROUNT } from '../config/constants.js'
+import { SALT_ROUND } from '../config/constants.js'
+
+const authSchema = new Schema(
+    {
+        provider: {
+            type: String,
+            enum: ['google', 'github'],
+            required: true,
+        },
+        providerId: {
+            type: String,
+            required: true,
+            unique: true,
+            index: true,
+        },
+        accessToken: {
+            type: String,
+            required: true,
+            unique: true,
+        },
+        refreshToken: {
+            type: String,
+            required: function () {
+                return this.provider === 'google'
+            },
+            unique: function () {
+                return this.provider === 'google'
+            },
+        },
+        expiresIn: {
+            type: Number,
+        },
+    },
+    { _id: false }
+)
 
 const userSchema = new Schema(
     {
@@ -20,7 +54,7 @@ const userSchema = new Schema(
         },
         picture: {
             type: String,
-            default: null,
+            default: 'https://c.tenor.com/dPxPiS67duoAAAAd/tenor.gif',
         },
         password: {
             type: String,
@@ -31,32 +65,15 @@ const userSchema = new Schema(
             default: false,
         },
         auth: {
-            provider: {
-                type: String,
-                enum: ['google', 'github'],
-                required: true,
-            },
-            providerId: {
-                type: String,
-                required: true,
-                unique: true,
-                index: true,
-            },
-            accessToken: {
-                type: String,
-                required: true, // Required for both Google and GitHub
-                unique: true,
-            },
-            refreshToken: {
-                type: String,
-                required: function () {
-                    return this.provider === 'google' // Required only for Google
-                },
-                unique: function () {
-                    return this.provider === 'google' // Unique only for Google
+            type: authSchema,
+            required: false,
+            validate: {
+                validator: function (val) {
+                    // If `auth` exists, it must have required fields
+                    if (!val) return true // no auth? okay
+                    return val.provider && val.providerId && val.accessToken
                 },
             },
-            expiresIn: { type: Number },
         },
 
         sessions: {
@@ -68,7 +85,7 @@ const userSchema = new Schema(
 
 userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next()
-    this.password = await bcrypt(this.password, SALT_ROUNT)
+    this.password = await bcrypt.hash(this.password, Number(SALT_ROUND))
     next()
 })
 

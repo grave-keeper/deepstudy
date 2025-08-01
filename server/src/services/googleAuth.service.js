@@ -44,7 +44,19 @@ export default class {
         return { tokens, payload }
     })
 
-    revokeGoogleRefreshToken = safeAsyncTry((refreshToken) => {
-        this.#oAuth2Client.revokeToken(refreshToken)
+    revokeGoogleRefreshToken = safeAsyncTry(async (refreshToken) => {
+        await this.#oAuth2Client.revokeToken(refreshToken)
+    })
+
+    generateNewAccessToken = safeAsyncTry(async (refreshToken) => {
+        this.#oAuth2Client.setCredentials({ refresh_token: refreshToken })
+        console.log('refresh token is : ', refreshToken)
+        console.log('oAuth2Client is  : ', this.#oAuth2Client)
+        // const response = await this.#oAuth2Client.getAccessToken()
+        // console.log('response token is : ', response)
+        // if (response?.token) {
+        //     return response.token
+        // }
+        // throw new Error('Failed to generate new access token')
     })
 }
