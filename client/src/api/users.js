@@ -1,17 +1,38 @@
 import { SERVER_IP } from '../config/constants.js'
 import { asyncHandler } from '../utils/asyncHandler.js'
 
-const signIn = asyncHandler(async (userData) => {
-    console.log('server ip is : ', SERVER_IP)
+const registerEmail = asyncHandler(async (email) => {
+    window.location.href = `${SERVER_IP}/users/register-email?email=${email}`
+})
+
+const singUp = asyncHandler(async (userData) => {
+    const urlEncodedData = new URLSearchParams(userData).toString()
+    const response = await fetch(`${SERVER_IP}/users/signup`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: urlEncodedData,
+        credentials: 'include',
+    })
+    if (response.redirected) {
+        window.location.href = response.url
+    }
+})
+
+const signIn = asyncHandler(async (userCredentials) => {
+    const urlEncodedData = new URLSearchParams(userCredentials).toString()
     const response = await fetch(`${SERVER_IP}/users/signin`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify(userData),
+        body: urlEncodedData,
+        credentials: 'include',
     })
-    const data = await response.json()
-    return response.ok ? [true, data] : [false, []]
+    if (response.redirected) {
+        window.location.href = response.url
+    }
 })
 
 const profile = asyncHandler(async () => {
@@ -20,7 +41,7 @@ const profile = asyncHandler(async () => {
     })
 
     const data = await response.json()
-    return response.ok ? [true, data] : [false, []]
+    return response.ok ? [true, data.message] : [false, data.error]
 })
 
 const feedback = asyncHandler(async (formData) => {
@@ -38,10 +59,12 @@ const feedback = asyncHandler(async (formData) => {
 })
 
 const logOut = asyncHandler(async () => {
-    const response = await fetch(`${SERVER_IP}/users/logout`)
+    const response = await fetch(`${SERVER_IP}/users/logout`, {
+        credentials: 'include',
+    })
 
     const data = await response.json()
     return response.ok ? [true, data.message] : [false, data.error]
 })
 
-export { signIn, profile, feedback, logOut }
+export { registerEmail, singUp, signIn, profile, feedback, logOut }

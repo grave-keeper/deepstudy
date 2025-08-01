@@ -17,7 +17,6 @@ const dropdownToggle = document.querySelector('.navbar-right > div:last-child')
 const dropdownMenu = document.querySelector('.navbar-right > div:last-child > ul:last-child')
 
 dropdownToggle.onclick = (event) => {
-    console.log('inside the dropdownToggle ')
     event.stopPropagation()
     dropdownMenu.style.display =
         getComputedStyle(dropdownMenu).display === 'none' ? 'block' : 'none'
@@ -25,7 +24,6 @@ dropdownToggle.onclick = (event) => {
 
 document.onclick = (event) => {
     event.stopPropagation()
-    console.log('inside the document.onclick ')
     const isClickInside = dropdownToggle.contains(event.target)
     if (!isClickInside && getComputedStyle(dropdownMenu).display === 'block') {
         dropdownMenu.style.display =
@@ -39,6 +37,5 @@ const logOutBtn = document.querySelector('.navbar-right > div:last-child > ul:la
 
 logOutBtn.onclick = (event) => {
     // event.stopPropagation()  no need to stop the propagation
-    console.log('inside the logOutBtn ')
     handleLogOut()
 }

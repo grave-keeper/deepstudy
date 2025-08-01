@@ -44,7 +44,7 @@ a:hover{
     width: 40px;
     height: 40px;
     border-radius: 100%;
-    background-color: white;
+    object-fit: cover;
 }
 
 .navbar-right > div:last-child{

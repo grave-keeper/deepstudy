@@ -67,13 +67,18 @@
     outline: none;
 }
 
-.hero-input a {
+.hero-input button {
+    border: none;
     background-color: #46C046;
     color: white;
     font-size: 0.8rem;
     padding: 8px 10px;
     border-radius: 5px;
     font-weight: 600;
+}
+
+.hero-input button:hover{
+    cursor: pointer;
 }
 
 .hero-image {

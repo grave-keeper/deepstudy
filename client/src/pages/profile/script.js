@@ -4,7 +4,7 @@ import { getUserData } from '../../services/userService.js';
 fetchNavBar()
 
 ;(async () => {
-    await fetch('../../components/userProfile')
+    await fetch('../../components/userProfile/index.html')
         .then((userProfile) => userProfile.text())
         .then((userProfile) => (document.getElementById('profile').innerHTML = userProfile))
         .catch((error) => console.error('Error while fetching userProfile \n', error))

@@ -1,13 +1,15 @@
-import { signIn, profile, feedback, logOut } from '../api/users.js'
+import { registerEmail, singUp, signIn, profile, feedback, logOut } from '../api/users.js'
 
-const handleSignIn = async (userData) => {
-    const [status, data] = await signIn(userData)
-    if (status) {
-        localStorage.setItem('user', JSON.stringify(data))
-        return true
-    } else {
-        return false
-    }
+const handleRegisterEmail = async (email) => {
+    registerEmail(email)
+}
+
+const handleSignUp = async (userData) => {
+    await singUp(userData)
+}
+
+const handleSignIn = async (userCredentials) => {
+    signIn(userCredentials)
 }
 
 const getUserData = async () => {
@@ -33,10 +35,12 @@ const handleLogOut = async () => {
     const [status, data] = await logOut()
     if (status) {
         localStorage.removeItem('user')
-        return [true, data]
+        window.location.href = `${window.location.href}?success=log-out`
     } else {
+        localStorage.removeItem('user')
+        location.reload()
         return [false, data]
     }
 }
 
-export { handleSignIn, getUserData, sendFeedback, handleLogOut }
+export { handleRegisterEmail, handleSignUp, handleSignIn, getUserData, sendFeedback, handleLogOut }

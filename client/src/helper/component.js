@@ -1,7 +1,7 @@
 import { getUserData } from '../services/userService.js'
 
 async function fetchNavBar() {
-    await fetch('../../components/navbar')
+    await fetch('../../components/navbar/index.html')
         .then((navbar) => navbar.text())
         .then((navbar) => (document.getElementById('navbar').innerHTML = navbar))
         .catch((err) => console.error('Error while fetching navbar \n', err))
@@ -18,7 +18,7 @@ async function fetchNavBar() {
 }
 
 async function getFooter() {
-    await fetch('../../components/footer')
+    await fetch('../../components/footer/index.html')
         .then((footer) => footer.text())
         .then((footer) => (document.getElementById('footer').innerHTML = footer))
         .catch((err) => console.error('Error while fetching footer \n', err))
