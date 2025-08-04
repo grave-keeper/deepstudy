@@ -26,6 +26,10 @@ app.use('/api/auth', apiRouter)
 // Redirct url : google,github
 import authRouter from './routes/auth.route.js'
 app.use('/auth', authRouter)
+// books route : pyq
+import pyqRouter from './routes/pyq.route.js'
+app.use('/pyq', pyqRouter)
+
 
 // Error-handling middleware
 app.use((error, req, res, next) => {

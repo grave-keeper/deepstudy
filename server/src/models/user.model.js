@@ -19,14 +19,10 @@ const authSchema = new Schema(
         accessToken: {
             type: String,
             required: true,
-            unique: true,
         },
         refreshToken: {
             type: String,
             required: function () {
-                return this.provider === 'google'
-            },
-            unique: function () {
                 return this.provider === 'google'
             },
         },
@@ -61,7 +57,7 @@ const userSchema = new Schema(
             default: null,
         },
         emailVerified: {
-            type: String,
+            type: Boolean,
             default: false,
         },
         auth: {
@@ -77,7 +73,7 @@ const userSchema = new Schema(
         },
 
         sessions: {
-            refreshToken: { type: String, required: true, unique: true },
+            refreshToken: { type: String, required: true },
         },
     },
     { timestamps: true }

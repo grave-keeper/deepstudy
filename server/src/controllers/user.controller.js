@@ -17,9 +17,14 @@ import {
 const registerEmail = safeRoutePromise(async (req, res) => {
     console.log('inside registerEmail...')
     const email = req.query.email
+    if (!email)
+        return res
+            .status(301)
+            .redirect(
+                `${FRONTEND_URL}/src/pages/home/index.html?error=no-email`
+            )
     const user = await getUserByGmail(email)
     if (user) {
-        console.log('user already exist')
         return res
             .status(301)
             .redirect(
@@ -29,9 +34,6 @@ const registerEmail = safeRoutePromise(async (req, res) => {
         let user = await getTempUserByGmail(email)
         if (user) await user.deleteOne()
         user = await TempUser.create({ email })
-        console.log(
-            `url : ${FRONTEND_URL}/src/pages/create-account?id=${user._id}`
-        )
         res.status(302).redirect(
             `${FRONTEND_URL}/src/pages/create-account/index.html?id=${user._id}`
         )
@@ -69,8 +71,6 @@ const registerUser = safeRoutePromise(async (req, res) => {
     user.sessions = { refreshToken }
     await user.save()
 
-    console.log('register user is : ', user)
-
     res.status(201)
         .cookie('accessToken', accessToken, accessTokenCookieOptions)
         .cookie('refreshToken', refreshToken, refreshTokenCookieOptions)
@@ -78,7 +78,7 @@ const registerUser = safeRoutePromise(async (req, res) => {
 })
 
 const loginUser = safeRoutePromise(async (req, res) => {
-    console.log('loginUser body is : ', req.body)
+    console.log('inside loginUser...')
     const { email, password } = req.body
     const user = await getUserByGmail(email)
     if (!user) {
@@ -99,7 +99,7 @@ const loginUser = safeRoutePromise(async (req, res) => {
     user.sessions = { refreshToken }
     await user.save()
 
-    console.log('sign in user is : ', user)
+    // console.log('sign in user is : ', user)
 
     res.status(301)
         .cookie('accessToken', accessToken, accessTokenCookieOptions)
@@ -112,7 +112,6 @@ const getUserData = safeRoutePromise(async (req, res) => {
     const user = await User.findById(req.user._id).select(
         '-_id email name picture createdAt'
     )
-    console.log('user is : ', user)
     res.status(200).json({ message: user })
 })
 
@@ -123,6 +122,7 @@ const submitFeedback = safeRoutePromise(async (req, res) => {
 })
 
 const logOutUser = async (req, res) => {
+    console.log('inside logOutUser...')
     await User.findByIdAndUpdate(
         { _id: req.user._id },
         { $unset: { sessions: 1 } }

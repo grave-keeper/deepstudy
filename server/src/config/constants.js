@@ -25,6 +25,9 @@ const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET
 const GITHUB_REDIRECT_URL = process.env.GITHUB_REDIRECT_URL
 
+const SUPABASE_URL = process.env.SUPABASE_URL
+const SUPABASE_API_KEY = process.env.SUPABASE_API_KEY
+
 const FRONTEND_URL =
     NODE_ENV === 'production'
         ? process.env.FRONTEND_URL
@@ -47,6 +50,8 @@ export {
     GITHUB_CLIENT_ID,
     GITHUB_CLIENT_SECRET,
     GITHUB_REDIRECT_URL,
+    SUPABASE_URL,
+    SUPABASE_API_KEY,
     FRONTEND_URL,
     SERVER_PORT,
     SALT_ROUND,

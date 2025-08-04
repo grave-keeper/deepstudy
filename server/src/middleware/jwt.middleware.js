@@ -16,7 +16,6 @@ export const authMiddleware = (req, res, next) => {
         return res
             .status(401)
             .clearCookie('accessToken')
-            .clearCookie('refreshToken')
             .json({ error: 'Unauthorized user' })
     }
 }

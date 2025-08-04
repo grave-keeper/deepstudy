@@ -17,7 +17,9 @@ const handleGoogleCallback = safeRoutePromise(async (req, res) => {
     if (!code) {
         return res
             .status(301)
-            .redirect(`${FRONTEND_URL}/src/pages/home/index.html?error=no-google-code`)
+            .redirect(
+                `${FRONTEND_URL}/src/pages/home/index.html?error=no-google-code`
+            )
     }
 
     const authService = new googleAuthService()
@@ -81,6 +83,7 @@ const handleGoogleCallback = safeRoutePromise(async (req, res) => {
                     'auth.accessToken': tokens.access_token,
                     'auth.refreshToken': tokens.refresh_token,
                     'auth.expiresIn': tokens.expiry_date,
+                    sessions: jwtTokens.refreshToken,
                 },
             },
             { new: true }
@@ -96,7 +99,9 @@ const handleGoogleCallback = safeRoutePromise(async (req, res) => {
             jwtTokens.refreshToken,
             accessTokenCookieOptions
         )
-        .redirect(`${FRONTEND_URL}/src/pages/home/index.html?success=google-callback`)
+        .redirect(
+            `${FRONTEND_URL}/src/pages/home/index.html?success=google-callback`
+        )
 })
 
 const handleGitHubCallback = safeRoutePromise(async (req, res) => {
@@ -105,7 +110,9 @@ const handleGitHubCallback = safeRoutePromise(async (req, res) => {
     if (!code) {
         return res
             .status(400)
-            .redirect(`${FRONTEND_URL}/src/pages/home/index.html?error=no-github-code`)
+            .redirect(
+                `${FRONTEND_URL}/src/pages/home/index.html?error=no-github-code`
+            )
     }
     const userData = await handleGitHubAuth(code)
     console.log('userdata is : ', userData)
@@ -164,6 +171,7 @@ const handleGitHubCallback = safeRoutePromise(async (req, res) => {
                     'auth.provider': 'github',
                     'auth.providerId': userData.id,
                     'auth.accessToken': userData.accessToken,
+                    sessions: jwtTokens.refreshToken,
                 },
             },
             { new: true }
@@ -179,7 +187,9 @@ const handleGitHubCallback = safeRoutePromise(async (req, res) => {
             jwtTokens.refreshToken,
             accessTokenCookieOptions
         )
-        .redirect(`${FRONTEND_URL}/src/pages/home/index.html?success=github-callback`)
+        .redirect(
+            `${FRONTEND_URL}/src/pages/home/index.html?success=github-callback`
+        )
 })
 
 export { handleGoogleCallback, handleGitHubCallback }
