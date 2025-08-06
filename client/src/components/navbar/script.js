@@ -22,14 +22,14 @@ dropdownToggle.onclick = (event) => {
         getComputedStyle(dropdownMenu).display === 'none' ? 'block' : 'none'
 }
 
-document.onclick = (event) => {
+document.addEventListener('click', (event) => {
     event.stopPropagation()
-    const isClickInside = dropdownToggle.contains(event.target)
-    if (!isClickInside && getComputedStyle(dropdownMenu).display === 'block') {
+    // const isClickInside = dropdownToggle.contains(event.target)
+    if (getComputedStyle(dropdownMenu).display === 'block') {
         dropdownMenu.style.display =
             getComputedStyle(dropdownMenu).display === 'none' ? 'block' : 'none'
     }
-}
+})
 
 // listening to user logout click
 

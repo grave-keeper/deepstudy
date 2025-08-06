@@ -67,7 +67,7 @@ a:hover{
 .navbar-right > div:last-child > ul:last-child{
     display: none;
     position: absolute;
-    top: 120%;
+    top: 130%;
     left: 0;
     /* background-color: #212121; */
     /* border: 1px solid rgb(137, 216, 137); */
