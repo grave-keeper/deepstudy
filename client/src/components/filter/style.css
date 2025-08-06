@@ -137,7 +137,8 @@
 
 #pyq-container > #filter-container > li:hover,
 #pyq-container > #filter-container > li > button:hover,
-#qst-container > article > button:hover{
+#qst-container > article > button:hover,
+#qst-container article div:hover{
   cursor: pointer;
 }
 

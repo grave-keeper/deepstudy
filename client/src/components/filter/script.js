@@ -65,12 +65,12 @@ div.style.fontWeight = '600'
 qstSection.appendChild(div)
 
 async function displayPyq(filterData) {
-    div.innerText = 'Fetching data from the backend… please wait.'
+    div.innerText = 'Please wait fetching data...'
     const [status, data] = await handleGetPyqPdfs(filterData)
     if (status) {
         // console.log('inside if ...')
         // console.log(Object.entries(data)[0])
-        qstSection.removeChild(div)
+        qstSection.removeChild(div) // gonna give error
         Object.keys(data).forEach((item) => {
             // Append Header
             const pyqHeader = document.createElement('h2')
@@ -94,8 +94,8 @@ async function displayPyq(filterData) {
                 qstContainer.id = 'qst-container'
                 p.innerText = pdfs.name.split('-').slice(3, -1).join(' ')
                 a.innerText = pdfs.name.split('-').join(' ')
-                a.href = pdfs.url
-                a.target = "_blank"
+                // a.href = pdfs.url
+                // a.target = '_blank'
                 button.innerText = 'Download'
 
                 article.appendChild(div)
@@ -105,6 +105,29 @@ async function displayPyq(filterData) {
 
                 qstContainer.appendChild(article)
                 qstSection.appendChild(qstContainer)
+
+                // view
+                div.onclick = () => {
+                    window.open(pdfs.url, '_blank')
+                }
+
+                // downloadable
+                button.onclick = async () => {
+                    try {
+                        const response = await fetch(pdfs.url)
+                        const data = await response.blob()
+                        const url = URL.createObjectURL(data)
+                        const a = document.createElement('a')
+                        a.href = url
+                        a.download = pdfs.name
+                        document.body.appendChild(a)
+                        a.click()
+                        document.body.removeChild(a)
+                        URL.revokeObjectURL(url) // clean up
+                    } catch (error) {
+                        console.log('Error while fetching downloadable pdf')
+                    }
+                }
             })
         })
     } else {
