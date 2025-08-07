@@ -1,4 +1,4 @@
-export async function toast(data) {
+export default async function toast(data) {
     await fetch('../../components/toast/index.html')
         .then((toast) => toast.text())
         .then((tost) => {
@@ -11,11 +11,13 @@ export async function toast(data) {
             console.error('Error while fetching content\n', err)
         })
     const toast = document.querySelector('#toast #toast-container')
-    console.log(toast)
+    // console.log(toast)
     if (data.status) {
         toast.querySelector('#sign-tick').style.display = 'inline'
+        toast.querySelector('#sign-cross').style.display = 'none'
         toast.style.borderLeft = '4px solid green'
     } else {
+        toast.querySelector('#sign-tick').style.display = 'none'
         toast.querySelector('#sign-cross').style.display = 'inline'
         toast.style.borderLeft = '4px solid red'
     }
@@ -23,6 +25,6 @@ export async function toast(data) {
     toast.querySelector('div').innerText = data.message
     toast.style.display = 'flex'
     setTimeout(() => {
-        toast.style.display = 'none'
+        document.body.removeChild(document.querySelector('#toast'))
     }, 5000)
 }

@@ -1,11 +1,13 @@
 #toast-container{
     display: none;
     position: fixed;
-    justify-content: space-evenly;
+    /* justify-content: space-between; */
+    gap: 20px;
+    padding: 0 20px;
     align-items: center;
     top: 30px;
-    right: 30px;
-    width: 250px;
+    right: 70px;
+    width: 300px;
     height: 60px;
     background-color: white;
     border: 1px solid black;
