@@ -117,6 +117,8 @@ const getUserData = safeRoutePromise(async (req, res) => {
 
 const submitFeedback = safeRoutePromise(async (req, res) => {
     const { name, email, type, comment } = req.body
+    if(!name || !email || !type || !comment ) return res.status(400).json({message:"missing field"})
+    else if (comment.legth > 50) res.status(400).json({message:"comment is too long"})
     await Feedback.create({ name, email, type, comment })
     res.status(200).json({ message: 'comment send successfully!' })
 })
