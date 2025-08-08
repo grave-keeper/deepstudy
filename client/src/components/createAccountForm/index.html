@@ -14,26 +14,26 @@
         <div class="name-container">
             <div>
                 <label for="firstName">first name</label>
-                <input type="text" name="firstName">
+                <input type="text" name="firstName" required>
             </div>
             <div>
                 <label for="lastName">last name</label>
-                <input type="text" name="lastName">
+                <input type="text" name="lastName" required>
             </div>
         </div>
-        <!-- <label for="email">email address</label>
-        <input type="email" name="email"> -->
         <label for="password">password</label>
         <div class="password">
-            <input type="password" name="password">
+            <input type="password" name="password" required>
             <img class="eye" src="../../../assets/svg/eye_close.svg" alt="">
         </div>
         <label for="password">confirm password</label>
-        <input type="password" name="confirmPassword">
+        <div class="password">
+            <input type="password" name="confirmPassword" required>
+            <img class="eye" src="../../../assets/svg/eye_close.svg" alt="">
+        </div>
         <button type="submit">Sign up</button>
     </form>
 </section>
-
 
 <footer>
     <p>By signing up , you agree to our <a href="">Terms & Conditions</a> and
