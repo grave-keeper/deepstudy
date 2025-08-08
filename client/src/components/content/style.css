@@ -36,14 +36,14 @@
     width: 310px;
 }
 
-.hero-input {
+.cta .hero-input {
     height: 35px;
     position: relative;
     display: flex;
     justify-content: space-between;
 }
 
-.hero-svg-message {
+.cta .hero-svg-message {
     position: absolute;
     top: 5px;
     left: 10px;
@@ -58,16 +58,16 @@
     border-radius: 5px;
 }
 
-.hero-email::placeholder{
+.cta .hero-email::placeholder{
     color: black;
     font-weight: 500;
 }
 
-.hero-email:focus {
+.cta .hero-email:focus {
     outline: none;
 }
 
-.hero-input button {
+.cta button {
     border: none;
     background-color: #46C046;
     color: white;
@@ -75,16 +75,28 @@
     padding: 8px 10px;
     border-radius: 5px;
     font-weight: 600;
+    width: fit-content;
 }
 
-.hero-input button:hover{
+.cta button:hover{
     cursor: pointer;
 }
 
-.hero-image {
+.cta .hero-image {
     border-radius: 5px;
     max-width: 626px;
     /* height: 337px; */
+}
+
+.cta .cta-logged-in{
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cta .cta-logged-in p{
+    width: 100%;
+    font-size: 0.9rem;
 }
 
 #story-section{
