@@ -86,6 +86,10 @@ userSchema.pre('save', async function (next) {
 })
 
 userSchema.methods.isPasswordCorrect = async function (password) {
+    // check if current passwod exist or not because when sign in with google or github it will won't set any password
+    if (!this.password) {
+        return false
+    }
     return await bcrypt.compare(password, this.password)
 }
 

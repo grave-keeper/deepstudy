@@ -35,6 +35,6 @@ app.use('/pyq', pyqRouter)
 app.use((error, req, res, next) => {
     console.log('erros middleware : \n', error)
     res.status(500).json({
-        error: 'Internal Server Error',
+        message: 'Internal Server Error',
     })
 })
