@@ -118,7 +118,7 @@
 
 #qst-container > article {
   width: 278px;
-  height: 200px;
+  height: 220px;
   background-color: #D9D9D9;
   border-radius: 5px;
   padding: 10px;
@@ -164,6 +164,7 @@
   font-weight: bold;
   height: 30%;
   color: #242424;
+  margin-bottom: 10px;
 }
 
 #qst-container article div a{

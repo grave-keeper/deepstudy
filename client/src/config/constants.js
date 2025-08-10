@@ -1,3 +1,3 @@
-const SERVER_IP = 'http://localhost:4000'
+const SERVER_IP = 'http://192.168.0.100:4000'
 
 export { SERVER_IP }

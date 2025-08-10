@@ -18,6 +18,8 @@ const singUp = asyncHandler(async (userData) => {
     if (response.redirected) {
         window.location.href = response.url
     }
+    const data = await response.json()
+    return [false, data.message]
 })
 
 const signIn = asyncHandler(async (userCredentials) => {
@@ -33,6 +35,8 @@ const signIn = asyncHandler(async (userCredentials) => {
     if (response.redirected) {
         window.location.href = response.url
     }
+    const data = await response.json()
+    return [false, data.message]
 })
 
 const profile = asyncHandler(async () => {
@@ -55,7 +59,7 @@ const feedback = asyncHandler(async (formData) => {
     })
 
     const data = await response.json()
-    return response.ok ? [true, data.message] : [false, data.error]
+    return response.ok ? [true, data.message] : [false, data.message]
 })
 
 const logOut = asyncHandler(async () => {
@@ -64,7 +68,7 @@ const logOut = asyncHandler(async () => {
     })
 
     const data = await response.json()
-    return response.ok ? [true, data.message] : [false, data.error]
+    return response.ok ? [true, data.message] : [false, data.message]
 })
 
 export { registerEmail, singUp, signIn, profile, feedback, logOut }
