@@ -1,6 +1,6 @@
 #content{
     background-color: #0A0A0A;
     color: white;
-    width: 100%;
+    padding: 0 max(30px,calc((100vw - 1217px) / 2));
     min-height: 30%;
 }

@@ -1,21 +1,32 @@
 #hero-section {
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
-    padding: 4% 5%;
-    display: grid;
-    grid-template-columns: repeat(2 ,1fr);
+    padding: 4% 0;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 50px;
+    justify-content: space-between;
+}
+
+.hero-left,
+.hero-right {
+    width: 570px;
 }
 
 .hero-left {
-    width: 79%;
     height: 337px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.hero-message h1{
+.hero-right .hero-image {
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-message h1 {
     font-weight: 500;
 }
 
@@ -53,12 +64,12 @@
     box-sizing: border-box;
     padding: 6px 0;
     padding-left: 50px;
-    width: 340px;
+    width: min(340px, 70%);
     border: none;
     border-radius: 5px;
 }
 
-.cta .hero-email::placeholder{
+.cta .hero-email::placeholder {
     color: black;
     font-weight: 500;
 }
@@ -69,7 +80,7 @@
 
 .cta button {
     border: none;
-    background-color: #46C046;
+    background-color: #46c046;
     color: white;
     font-size: 0.8rem;
     padding: 8px 10px;
@@ -78,54 +89,49 @@
     width: fit-content;
 }
 
-.cta button:hover{
+.cta button:hover {
     cursor: pointer;
 }
 
-.cta .hero-image {
-    border-radius: 5px;
-    max-width: 626px;
-    /* height: 337px; */
-}
-
-.cta .cta-logged-in{
+.cta .cta-logged-in {
     display: none;
     flex-direction: column;
     gap: 20px;
 }
 
-.cta .cta-logged-in p{
+.cta .cta-logged-in p {
     width: 100%;
     font-size: 0.9rem;
 }
 
-#story-section{
+#story-section {
     box-sizing: border-box;
-    padding: 4% 5%;
 }
 
-#story-section .story-image{
-    max-width: 1229.4px;
+#story-section .story-image {
+    border-radius: 5px;
+    width: 100%;
 }
 
-.workflow-section{
+.workflow-section {
     box-sizing: border-box;
     padding: 0 5%;
 }
 
-.workflow-section h2{
+.workflow-section h2 {
     text-align: center;
 }
 
-.workflow-process{
-    max-width: 1229.4px;
+.workflow-process {
+    width: 100%;
     padding: 4% 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
-.workflow-step{
+.workflow-step {
     background-color: black;
     width: 338px;
     height: 181px;
@@ -135,28 +141,36 @@
     flex-direction: column;
     gap: 5%;
     align-items: center;
-    padding: 2% 18%;
+    padding: 2% 20px;
     text-align: center;
 }
 
-.workflow-process span{
-    color: #4BB4FF;
+.workflow-process span {
+    color: #4bb4ff;
     font-size: 2rem;
     font-weight: bold;
 }
 
-.workflow-process img{
-    color: #4BB4FF;
+.workflow-process img {
+    color: #4bb4ff;
     width: 60px;
 }
 
-.workflow-step p{
+.workflow-step p {
     font-size: 0.9rem;
 }
 
-.benefits-step{
+.benefits-step {
     width: 267px;
     height: 298px;
     gap: 10%;
-    padding: 2% 9%;
+    padding: 2% 20px;
+}
+
+@media (max-width: 1200px) {
+
+    .hero-left,
+    .hero-right {
+        width: 100%;
+    }
 }
