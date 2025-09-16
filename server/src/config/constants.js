@@ -31,7 +31,7 @@ const SUPABASE_API_KEY = process.env.SUPABASE_API_KEY
 const FRONTEND_URL =
     NODE_ENV === 'production'
         ? process.env.FRONTEND_URL
-        : 'http://localhost:3000'
+        : 'http://192.168.0.100:3000'
 const SERVER_PORT = process.env.SERVER_PORT
 const SALT_ROUND = process.env.SALT_ROUND
 

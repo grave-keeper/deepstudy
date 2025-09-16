@@ -30,10 +30,9 @@ app.use('/auth', authRouter)
 import pyqRouter from './routes/pyq.route.js'
 app.use('/pyq', pyqRouter)
 
-
 // Error-handling middleware
 app.use((error, req, res, next) => {
-    console.log('erros middleware : \n', error)
+    // console.log('erros middleware : \n', error)
     res.status(500).json({
         message: 'Internal Server Error',
     })

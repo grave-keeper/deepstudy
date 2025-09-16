@@ -50,8 +50,8 @@ export default class {
 
     generateNewAccessToken = safeAsyncTry(async (refreshToken) => {
         this.#oAuth2Client.setCredentials({ refresh_token: refreshToken })
-        console.log('refresh token is : ', refreshToken)
-        console.log('oAuth2Client is  : ', this.#oAuth2Client)
+        // console.log('refresh token is : ', refreshToken)
+        // console.log('oAuth2Client is  : ', this.#oAuth2Client)
         // const response = await this.#oAuth2Client.getAccessToken()
         // console.log('response token is : ', response)
         // if (response?.token) {

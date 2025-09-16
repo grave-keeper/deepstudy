@@ -11,7 +11,7 @@ import {
 } from '../services/cookie.service.js'
 
 const handleGoogleCallback = safeRoutePromise(async (req, res) => {
-    console.log('Inside google handleGoogleCallback...')
+    // console.log('Inside google handleGoogleCallback...')
     const { code } = req.query
 
     if (!code) {
@@ -24,7 +24,7 @@ const handleGoogleCallback = safeRoutePromise(async (req, res) => {
 
     const authService = new googleAuthService()
     const { tokens, payload } = await authService.handleGoogleAuth(code)
-    console.log('tokens are : ', tokens)
+    // console.log('tokens are : ', tokens)
     let user = await getUserByGmail(payload.email)
     let jwtTokens = new Object()
 
@@ -49,7 +49,7 @@ const handleGoogleCallback = safeRoutePromise(async (req, res) => {
             name: user.name,
         })
 
-        console.log('jwtTokens is : ', jwtTokens)
+        // console.log('jwtTokens is : ', jwtTokens)
 
         user.sessions = {
             refreshToken: jwtTokens.refreshToken,
@@ -57,11 +57,11 @@ const handleGoogleCallback = safeRoutePromise(async (req, res) => {
 
         await user.save()
 
-        console.log('user created : ', user)
+        // console.log('user created : ', user)
     } else {
-        console.log('inside else : ', user.auth.refreshToken)
+        // console.log('inside else : ', user.auth.refreshToken)
         if (user.auth && user.auth.provider === 'google') {
-            console.log('revoking google token...')
+            // console.log('revoking google token...')
             authService.revokeGoogleRefreshToken(user.auth.refreshToken)
         }
         jwtTokens = createJwtTokens({
@@ -89,7 +89,7 @@ const handleGoogleCallback = safeRoutePromise(async (req, res) => {
             { new: true }
         )
 
-        console.log('user updated')
+        // console.log('user updated')
     }
 
     res.status(301)
@@ -105,7 +105,7 @@ const handleGoogleCallback = safeRoutePromise(async (req, res) => {
 })
 
 const handleGitHubCallback = safeRoutePromise(async (req, res) => {
-    console.log('Inside google handleGitHubCallback...')
+    // console.log('Inside google handleGitHubCallback...')
     const { code } = req.query
     if (!code) {
         return res
@@ -115,7 +115,7 @@ const handleGitHubCallback = safeRoutePromise(async (req, res) => {
             )
     }
     const userData = await handleGitHubAuth(code)
-    console.log('userdata is : ', userData)
+    // console.log('userdata is : ', userData)
     let user = await getUserByGmail(userData.email)
     let jwtTokens = new Object()
 
@@ -138,7 +138,7 @@ const handleGitHubCallback = safeRoutePromise(async (req, res) => {
             name: user.name,
         })
 
-        console.log('jwtTokens is : ', jwtTokens)
+        // console.log('jwtTokens is : ', jwtTokens)
 
         user.sessions = {
             refreshToken: jwtTokens.refreshToken,
@@ -146,14 +146,14 @@ const handleGitHubCallback = safeRoutePromise(async (req, res) => {
 
         await user.save()
 
-        console.log('user created : ', user)
+        // console.log('user created : ', user)
     } else {
         if (user.auth && user.auth.provider === 'google') {
-            console.log('revoked google token...')
+            // console.log('revoked google token...')
             const authService = new googleAuthService()
             authService.revokeGoogleRefreshToken(user.auth.refreshToken)
         }
-        console.log('inside else : ')
+        // console.log('inside else : ')
         jwtTokens = createJwtTokens({
             _id: user._id,
             email: user.email,
@@ -177,7 +177,7 @@ const handleGitHubCallback = safeRoutePromise(async (req, res) => {
             { new: true }
         )
 
-        console.log('update user is : ', user)
+        // console.log('update user is : ', user)
     }
 
     res.status(301)

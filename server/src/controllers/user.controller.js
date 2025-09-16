@@ -15,14 +15,14 @@ import {
 } from '../services/cookie.service.js'
 
 const registerEmail = safeRoutePromise(async (req, res) => {
-    console.log('inside registerEmail...')
+    // console.log('inside registerEmail...')
     const email = req.query.email
     if (!email)
         return res
             .status(301)
             .redirect(
                 `${FRONTEND_URL}/src/pages/home/index.html?error=no-email`
-            )
+            )``
     const user = await getUserByGmail(email)
     if (user) {
         return res
@@ -41,11 +41,17 @@ const registerEmail = safeRoutePromise(async (req, res) => {
 })
 
 const registerUser = safeRoutePromise(async (req, res) => {
-    console.log('inside registerUser ....')
+    // console.log('inside register User')
     const { firstName, lastName, password, confirmPassword, id } = req.body
+    if (!firstName || !lastName)
+        return res.status(400).json({ message: 'name is required' })
+    if (password !== confirmPassword || !password)
+        return res
+            .status(400)
+            .json({ message: "password didn't match confirmPassword" })
     const tempUser = await getTempUserById(id)
     if (!tempUser) {
-        console.log('invalid register id ...')
+        // console.log('invalid register id ...')
         return res
             .status(301)
             .redirect(
@@ -78,16 +84,16 @@ const registerUser = safeRoutePromise(async (req, res) => {
 })
 
 const loginUser = safeRoutePromise(async (req, res) => {
-    console.log('inside loginUser...')
+    // console.log('inside loginUser...')
     const { email, password } = req.body
     const user = await getUserByGmail(email)
     if (!user) {
-        return res.status(400).json({ error: 'invalid credentials' })
+        return res.status(400).json({ message: 'invalid credentials' })
     }
 
     const isPasswordCorrect = await user.isPasswordCorrect(password)
     if (!isPasswordCorrect) {
-        return res.status(400).json({ error: 'invalid credentials' })
+        return res.status(400).json({ message: 'invalid credentials' })
     }
 
     const { accessToken, refreshToken } = createJwtTokens({
@@ -99,8 +105,6 @@ const loginUser = safeRoutePromise(async (req, res) => {
     user.sessions = { refreshToken }
     await user.save()
 
-    // console.log('sign in user is : ', user)
-
     res.status(301)
         .cookie('accessToken', accessToken, accessTokenCookieOptions)
         .cookie('refreshToken', refreshToken, refreshTokenCookieOptions)
@@ -108,7 +112,6 @@ const loginUser = safeRoutePromise(async (req, res) => {
 })
 
 const getUserData = safeRoutePromise(async (req, res) => {
-    console.log('inside getUserData...')
     const user = await User.findById(req.user._id).select(
         '-_id email name picture createdAt'
     )
@@ -117,14 +120,17 @@ const getUserData = safeRoutePromise(async (req, res) => {
 
 const submitFeedback = safeRoutePromise(async (req, res) => {
     const { name, email, type, comment } = req.body
-    if(!name || !email || !type || !comment ) return res.status(400).json({message:"missing field"})
-    else if (comment.legth > 50) res.status(400).json({message:"comment is too long"})
+    if (!name || !email || !type || !comment)
+        return res.status(400).json({ message: 'some fields are missing' })
+    if (comment.length > 100)
+        return res.status(400).json({
+            message: 'comment is too long, it should be less than 100',
+        })
     await Feedback.create({ name, email, type, comment })
     res.status(200).json({ message: 'comment send successfully!' })
 })
 
 const logOutUser = async (req, res) => {
-    console.log('inside logOutUser...')
     await User.findByIdAndUpdate(
         { _id: req.user._id },
         { $unset: { sessions: 1 } }
@@ -132,7 +138,7 @@ const logOutUser = async (req, res) => {
     res.status(200)
         .clearCookie('accessToken', accessTokenCookieOptions)
         .clearCookie('refreshToken', refreshTokenCookieOptions)
-        .json({ message: 'logout successfully!' })
+        .json({ message: 'logout successfully' })
 }
 
 export {

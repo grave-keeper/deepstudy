@@ -15,7 +15,7 @@ const feedbackSchema = new Schema(
         },
         type: {
             type: String,
-            enum: ['inquiry', 'suggestion', 'complain', 'others'],
+            // enum: ['inquiry', 'suggestion', 'complain', 'others'],
             default: 'inquiry',
         },
         comment: {

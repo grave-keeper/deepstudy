@@ -4,7 +4,7 @@ const safeAsyncTry =
         try {
             return await fn(...args)
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             return null
         }
     }
