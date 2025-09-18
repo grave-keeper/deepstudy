@@ -1,0 +1,59 @@
+import { config } from 'dotenv'
+// config({ path: '../../.env' })
+config()
+
+const NODE_ENV = process.env.NODE_ENV
+const MONGODB_URL =
+    NODE_ENV === 'production'
+        ? process.env.MONGODB_URL
+        : 'mongodb://localhost:27017/deepstudy'
+
+const JWT_REFRESH_TOKEN_SECRET = process.env.JWT_REFRESH_TOKEN_SECRET
+const JWT_REFRESH_TOKEN_EXPIRY = process.env.JWT_REFRESH_TOKEN_EXPIRY
+const JWT_ACCESS_TOKEN_SECRET = process.env.JWT_ACCESS_TOKEN_SECRET
+const JWT_ACCESS_TOKEN_EXPIRY = process.env.JWT_ACCESS_TOKEN_EXPIRY
+
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET
+const GOOGLE_REDIRECT_URL = process.env.GOOGLE_REDIRECT_URL
+const GOOGLE_AUTH_SCOPES = JSON.parse(process.env.GOOGLE_AUTH_SCOPES)
+
+// const GOOGLE_DRIMAIL_REFRESH_TOKEN = process.env.GOOGLE_DRIMAIL_REFRESH_TOKEN
+// const GOOGLE_DRIMAIL_REFRESH_TOKEN = process.env.GOOGLE_DRIMAIL_ACCESS_TOKEN
+
+const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID
+const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET
+const GITHUB_REDIRECT_URL = process.env.GITHUB_REDIRECT_URL
+
+const SUPABASE_URL = process.env.SUPABASE_URL
+const SUPABASE_API_KEY = process.env.SUPABASE_API_KEY
+
+const FRONTEND_URL =
+    NODE_ENV === 'production'
+        ? process.env.FRONTEND_URL
+        : 'http://192.168.0.100:3000'
+const SERVER_PORT = process.env.SERVER_PORT
+const SALT_ROUND = process.env.SALT_ROUND
+
+export {
+    MONGODB_URL,
+    JWT_REFRESH_TOKEN_SECRET,
+    JWT_REFRESH_TOKEN_EXPIRY,
+    JWT_ACCESS_TOKEN_SECRET,
+    JWT_ACCESS_TOKEN_EXPIRY,
+    GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET,
+    GOOGLE_REDIRECT_URL,
+    GOOGLE_AUTH_SCOPES,
+    // GOOGLE_DRIMAIL_REFRESH_TOKEN,
+    // GOOGLE_DRIMAIL_ACCESS_TOKEN,
+    GITHUB_CLIENT_ID,
+    GITHUB_CLIENT_SECRET,
+    GITHUB_REDIRECT_URL,
+    SUPABASE_URL,
+    SUPABASE_API_KEY,
+    FRONTEND_URL,
+    SERVER_PORT,
+    SALT_ROUND,
+    NODE_ENV,
+}
