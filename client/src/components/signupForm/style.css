@@ -1,0 +1,33 @@
+#signup-container {
+    width: 350px;
+    height: 200px;
+    background-color: #212121;
+    border-radius: 5px;
+    border: 1px solid #434343;
+}
+
+
+#signup-container form {
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+    border-radius: 5px;
+    display: flex;
+    gap: 10%;
+    flex-direction: column;
+    padding: 3% 7%;
+}
+
+.otp-container{
+    width: 100%;
+    height: 33px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.otp-input{
+    width: 38px;
+    height: 33px;
+    background-color: white;
+    border-radius: 5px;
+}

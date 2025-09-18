@@ -1,0 +1,42 @@
+nav {
+    margin: 0 auto;
+    height: 10%;
+    color: white;
+    background-color: #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 max(10px, calc((100vw - 1217px) / 2));
+    border-bottom: 1px solid #434343;
+    font-weight: 600;
+}
+
+footer {
+    min-height: 50%;
+    font-size: 1rem;
+    color: white;
+    padding: 0 max(10px, calc((100vw - 1217px) / 2));
+    background-color: #0a0a0a;
+    border-top: 1px solid #434343;
+}
+
+/* responsive */
+
+/* Pc/Desktop */
+/* @media screen and (min-width:1025px){
+} */
+
+/* Tablet */
+/* @media screen and (min-width:641px) and (max-width:1024px){ */
+/*     nav{ */
+/*         background-color: red; */
+/*     } */
+/* } */
+
+/* Phone */
+
+/* @media screen and (max-width:640px){ */
+/*     nav{ */
+/*         background-color: aqua; */
+/*     } */
+/* } */

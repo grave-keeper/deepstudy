@@ -1,0 +1,26 @@
+#account-credentials {
+    width: 350px;
+    height: 266px;
+    background-color: #212121;
+    border-radius: 5px;
+    border: 1px solid #434343;
+}
+
+
+#account-credentials form {
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+    border-radius: 5px;
+    display: flex;
+    gap: 5%;
+    flex-direction: column;
+    padding: 3% 7%;
+}
+
+form .name-container{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    gap: 10%;
+}

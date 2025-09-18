@@ -1,0 +1,102 @@
+.left_arrow {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 63px;
+    left: 71px;
+    background-color: white;
+    border-radius: 100%;
+    box-shadow: 0 9px 19px rgba(255, 255, 255, 0.2);
+}
+
+header {
+    width: 350px;
+    display: flex;
+    justify-content: center;
+}
+
+header h2 {
+    font-weight: 600;
+}
+
+form label {
+    font-size: 0.9rem;
+}
+
+input {
+    width: 100%;
+    height: 25px;
+    border: none;
+    background-color: white;
+    border-radius: 5px;
+    padding: 0 5%;
+}
+
+input:focus {
+    outline: none;
+}
+
+.password {
+    position: relative;
+}
+
+.eye {
+    position: absolute;
+    top: 3px;
+    right: 10px;
+}
+
+.eye:hover{
+    cursor: pointer;
+}
+
+.open-auth {
+    width: 350px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+
+.auth {
+    height: 50%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 0 20px;
+    border-radius: 5px;
+    color: black;
+}
+
+.auth span {
+    width: 100%;
+    font-weight: 600;
+    text-align: center;
+}
+
+button{
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: #54AF54;
+    color: white;
+    font-weight: bold;
+}
+
+footer {
+    width: 350px;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+footer a {
+    color: #663399;
+    text-decoration: none;
+}
+
+.auth > *:hover,button:hover{
+    cursor: pointer;
+}

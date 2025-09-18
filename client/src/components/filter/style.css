@@ -1,0 +1,193 @@
+#pyq-container {
+    width: min(100vw, 1229.4px);
+    min-height: 820px;
+    margin: auto;
+    background-color: #212121;
+    border-radius: 5px;
+    padding: 50px min(4%, 100px);
+}
+
+#pyq-container>header h2 {
+    font-weight: 500;
+}
+
+#filter-container {
+    margin-top: 20px;
+    padding-top: 44px;
+    min-height: 88px;
+    /* background-color: red; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    /* column-gap : 50px, */
+    justify-content: center;
+}
+
+#filter-container>li {
+    width: 177.25px;
+    height: 44px;
+    list-style: none;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+}
+
+#filter-container .filter-item {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+#filter-container .filter-item .filter-type {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    color: white;
+    font-weight: 500;
+}
+
+#filter-container .filter-item>p {
+    font-weight: 500;
+}
+
+#filter-container .filter-item>ul {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 120%;
+    left: 0;
+    width: inherit;
+    height: auto;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    list-style-type: none;
+    font-weight: 500;
+}
+
+#filter-container .filter-item>ul>li {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#filter-container .filter-item>ul>li:not(:first-child) {
+    border-top: 1px solid black;
+}
+
+#filter-container>li>button {
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    background-color: #54af54;
+    color: white;
+    font-weight: 800;
+    font-size: 0.95rem;
+    border: none;
+}
+
+/* Articles */
+
+#qst-section {
+    margin-top: 50px;
+}
+
+#qst-section>h2 {
+    font-weight: 500;
+    text-decoration: underline;
+    margin-bottom: 50px;
+}
+
+#pyq-container>#filter-container>li>span:hover {
+    cursor: text;
+}
+
+/* #qst-section > div{
+  
+} */
+
+#qst-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(278px, 278px));
+    grid-template-rows: 200px;
+    row-gap: 70px;
+    column-gap: 70px;
+    width: 100%;
+    min-height: 200px;
+    justify-content: center;
+    margin: 50px 0;
+}
+
+#qst-container>article {
+    width: 278px;
+    height: 220px;
+    background-color: #d9d9d9;
+    border-radius: 5px;
+    padding: 10px;
+    color: black;
+}
+
+#qst-container>article>button {
+    width: 100%;
+    height: 20%;
+    background-color: #54af54;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+#pyq-container>#filter-container>li:hover,
+#pyq-container>#filter-container>li>button:hover,
+#qst-container>article>button:hover,
+#qst-container article div:hover {
+    cursor: pointer;
+}
+
+#qst-container article {
+    background: linear-gradient(135deg, white 0%, rgb(134, 134, 134) 100%);
+    border-left: 4px solid #3d3d3d;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+#qst-container article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#qst-container article div {
+    text-align: center;
+    padding: 10px;
+    height: 80%;
+}
+
+#qst-container article div p {
+    font-size: large;
+    font-weight: bold;
+    height: 30%;
+    color: #242424;
+    margin-bottom: 10px;
+}
+
+#qst-container article div a {
+    font-weight: 600;
+    color: #2e2e2e;
+}
+
+#qst-container>article>button {
+    background: linear-gradient(90deg, #2e2e2e 0%, #2e2e2e 100%);
+    color: #e2e8f0;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#qst-container>article>button:hover {
+    background: linear-gradient(90deg, #202020 0%, #141414 100%);
+}
