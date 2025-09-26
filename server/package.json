@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Deepest-DARK/deepstudy.git"
+    "url": "git+https://github.com/gravesoulkeeper/deepstudy.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Deepest-DARK/deepstudy/issues"
+    "url": "https://github.com/gravesoulkeeper/deepstudy/issues"
   },
-  "homepage": "https://github.com/Deepest-DARK/deepstudy#readme",
+  "homepage": "https://github.com/gravesoulkeeper/deepstudy#readme",
   "dependencies": {
     "@octokit/rest": "^22.0.0",
     "@supabase/supabase-js": "^2.53.0",
